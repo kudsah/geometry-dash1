@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация - Geometry Dash</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px;">
+        <h1>Авторизация успешна!</h1>
+        <p>Вы можете вернуться в игру.</p>
+        <button onclick="window.close()">Закрыть окно</button>
+    </div>
+    
+    <script>
+        if (window.Telegram && Telegram.WebApp) {
+            Telegram.WebApp.ready();
+            Telegram.WebApp.expand();
+            
+            // Получаем данные пользователя
+            const user = Telegram.WebApp.initDataUnsafe.user;
+            if (user) {
+                console.log('Пользователь авторизован:', user);
+                // Сохраняем данные в localStorage
+                localStorage.setItem('tg_user', JSON.stringify(user));
+            }
+            
+            // Через 2 секунды закрываем окно
+            setTimeout(() => {
+                if (window.opener) {
+                    window.opener.location.reload();
+                    window.close();
+                }
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

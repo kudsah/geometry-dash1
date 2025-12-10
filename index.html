@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Dash - Technical Edition</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #authSection {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        #userInfo {
+            display: none;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .logout-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        
+        /* Эффект нажатия на мобильных устройствах */
+        @keyframes tapEffect {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Код авторизации из Telegram -->
+    <script async src="https://telegram.org/js/telegram-widget.js?22" 
+        data-telegram-login="your_bot_username" 
+        data-size="large" 
+        data-auth-url="https://вашгитхаб.github.io/geometry-dash/auth.html" 
+        data-request-access="write">
+    </script>
+
+    <div id="gameContainer">
+        <div id="menu">
+            <div id="startScreen">
+                <h1>🎮 GEOMETRY DASH</h1>
+                <h2>TECHNICAL EDITION</h2>
+                <button id="startBtn">СТАРТ ИГРЫ</button>
+                <div id="controls">
+                    <p>ПРОБЕЛ/КЛИК - прыжок</p>
+                    <p>Избегай препятствий!</p>
+                </div>
+                <div id="authSection">
+                    <p>Войдите через Telegram</p>
+                </div>
+            </div>
+            
+            <div id="gameOverScreen" class="hidden">
+                <h1>💀 ИГРА ОКОНЧЕНА</h1>
+                <h2 id="finalScore">Счет: 0</h2>
+                <button id="restartBtn">ИГРАТЬ СНОВА</button>
+                <button id="shareBtn">ПОДЕЛИТЬСЯ</button>
+            </div>
+        </div>
+        
+        <canvas id="gameCanvas"></canvas>
+        
+        <div id="ui">
+            <div id="score">🏃 Счет: 0</div>
+            <div id="highScore">🏆 Рекорд: 0</div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
